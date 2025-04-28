@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from "react";
 
-const Users = (props: PropsWithChildren) => {
+const Users = () => {
 	return <div>Users</div>;
 };
 

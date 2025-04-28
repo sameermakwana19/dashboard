@@ -16,13 +16,7 @@ import EditUser from "@/components/EditUser";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import AppLineChart from "@/components/AppLineChart";
 
-type Props = {
-	params: {
-		username: string;
-	};
-};
-
-const User = ({ params }: Props) => {
+const User = () => {
 	return (
 		<div>
 			<BreadCrumb />
