@@ -3,7 +3,14 @@
 import React from "react";
 import { Button } from "./ui/button";
 import Link from "next/link";
-import { LogOut, Moon, Settings, Sun, User } from "lucide-react";
+import {
+	CircleDollarSign,
+	LogOut,
+	Moon,
+	Settings,
+	Sun,
+	User,
+} from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import {
 	DropdownMenu,
@@ -20,10 +27,10 @@ type Props = {};
 
 const Navbar = (props: Props) => {
 	const { theme, setTheme } = useTheme();
-	const { toggleSidebar } = useSidebar();
+	// const { toggleSidebar } = useSidebar();
 
 	return (
-		<nav className="p-4 flex items-center justify-between">
+		<nav className="p-4 flex items-center justify-between sticky top-0 bg-background z-10">
 			<SidebarTrigger size={"lg"} />
 			{/* <Button variant={"outline"} onClick={toggleSidebar} className="lg:hidden">
 				Toggle
@@ -36,6 +43,7 @@ const Navbar = (props: Props) => {
 				<Button
 					variant="outline"
 					size="icon"
+					className="cursor-pointer"
 					onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
 				>
 					<Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
@@ -53,13 +61,21 @@ const Navbar = (props: Props) => {
 					<DropdownMenuContent sideOffset={10}>
 						<DropdownMenuLabel>My Account</DropdownMenuLabel>
 						<DropdownMenuSeparator />
-						<DropdownMenuItem>
-							<User className="h-[1.2rem] w-[1.2rem] mr-2" />
-							Profile
+						<DropdownMenuItem asChild>
+							<Link href="/users/sam" className="flex items-center">
+								<User className="h-[1.2rem] w-[1.2rem] mr-2" />
+								Profile
+							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem>
 							<Settings className="h-[1.2rem] w-[1.2rem] mr-2" />
 							Settings
+						</DropdownMenuItem>
+						<DropdownMenuItem asChild>
+							<Link href="/payments" className="flex items-center">
+								<CircleDollarSign className="h-[1.2rem] w-[1.2rem] mr-2" />
+								Payments
+							</Link>
 						</DropdownMenuItem>
 						<DropdownMenuItem variant="destructive">
 							<LogOut className="h-[1.2rem] w-[1.2rem] mr-2" />

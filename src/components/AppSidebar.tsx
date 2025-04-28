@@ -9,17 +9,23 @@ import {
 	SidebarGroupLabel,
 	SidebarHeader,
 	SidebarMenu,
+	SidebarMenuBadge,
 	SidebarMenuButton,
 	SidebarMenuItem,
+	SidebarMenuSub,
+	SidebarMenuSubButton,
+	SidebarMenuSubItem,
 	SidebarSeparator,
 } from "./ui/sidebar";
 
 import {
 	Calendar,
+	ChevronDown,
 	ChevronUp,
 	Home,
 	Inbox,
 	Plus,
+	Projector,
 	Search,
 	Settings,
 	User2,
@@ -33,6 +39,11 @@ import {
 	DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import {
+	Collapsible,
+	CollapsibleContent,
+	CollapsibleTrigger,
+} from "./ui/collapsible";
 
 type Props = {};
 
@@ -99,6 +110,9 @@ const AppSidebar = (props: React.PropsWithChildren) => {
 											<span>{item.title}</span>
 										</Link>
 									</SidebarMenuButton>
+									{item.title === "Inbox" && (
+										<SidebarMenuBadge>19</SidebarMenuBadge>
+									)}
 								</SidebarMenuItem>
 							))}
 						</SidebarMenu>
@@ -139,6 +153,80 @@ const AppSidebar = (props: React.PropsWithChildren) => {
 										<span>Project 2</span>
 									</Link>
 								</SidebarMenuButton>
+							</SidebarMenuItem>
+						</SidebarMenu>
+					</SidebarGroupContent>
+				</SidebarGroup>
+
+				<Collapsible defaultOpen className="group/collapsible">
+					<SidebarGroup>
+						<SidebarGroupLabel asChild>
+							<CollapsibleTrigger>
+								Help
+								<ChevronDown className="ml-auto transition-transform group-data-[state=open]/collapsible:rotate-180" />
+							</CollapsibleTrigger>
+						</SidebarGroupLabel>
+						<CollapsibleContent>
+							<SidebarGroupContent>
+								<SidebarMenu>
+									<SidebarMenuItem>
+										<SidebarMenuButton asChild>
+											<Link href={"/"}>
+												<User2 />
+												<span>Support</span>
+											</Link>
+										</SidebarMenuButton>
+										<SidebarMenuButton asChild>
+											<Link href={"/"}>
+												<Projector />
+												<span>See all projects</span>
+											</Link>
+										</SidebarMenuButton>
+									</SidebarMenuItem>
+								</SidebarMenu>
+							</SidebarGroupContent>
+						</CollapsibleContent>
+					</SidebarGroup>
+				</Collapsible>
+
+				{/* TODO: NESTED items */}
+				<SidebarGroup>
+					<SidebarGroupLabel>Projects</SidebarGroupLabel>
+					<SidebarGroupAction title="Add Project">
+						<Plus /> <span className="sr-only">Add Project</span>
+					</SidebarGroupAction>
+					<SidebarGroupContent>
+						<SidebarMenu>
+							<SidebarMenuItem>
+								<SidebarMenuButton asChild>
+									<Link href="/">
+										<Image
+											src="/avatar.png"
+											alt="Logo"
+											width={100}
+											height={100}
+											className="w-6 h-6 rounded-full"
+										/>
+										<span>Project 1</span>
+										<Plus className="ml-auto" />
+									</Link>
+								</SidebarMenuButton>
+								<SidebarMenuSub>
+									<SidebarMenuSubItem>
+										<SidebarMenuSubButton asChild>
+											<Link href="/">
+												<Image
+													src="/avatar.png"
+													alt="Logo"
+													width={100}
+													height={100}
+													className="w-6 h-6 rounded-full"
+												/>
+												<span>Project 1-1 </span>
+											</Link>
+										</SidebarMenuSubButton>
+									</SidebarMenuSubItem>
+								</SidebarMenuSub>
 							</SidebarMenuItem>
 						</SidebarMenu>
 					</SidebarGroupContent>
